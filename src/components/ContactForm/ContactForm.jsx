@@ -1,9 +1,14 @@
 import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { addContact } from '../../redux/actions';
+import { getContacts } from '../../redux/selectors';
 import s from './ContactForm.module.css';
 
-export const ContactForm = ({ onSubmit, contacts }) => {
+export const ContactForm = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
+  const contacts = useSelector(getContacts);
+  const dispatch = useDispatch();
 
   const handleInputChange = ({ target: { name, value } }) => {
     name === 'name' ? setName(value) : setNumber(value);
@@ -17,7 +22,7 @@ export const ContactForm = ({ onSubmit, contacts }) => {
     if (isContact) {
       return window.alert(`Контакт с именем ${name} уже существет`);
     } else {
-      onSubmit({ name, number });
+      dispatch(addContact({ name, number }));
       setName('');
       setNumber('');
     }
