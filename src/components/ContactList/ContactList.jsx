@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { deleteContact } from '../../redux/actions';
+import { deleteContact } from '../../redux/operations';
 import { getVisibleContact } from '../../redux/selectors';
 import { IconButton } from '../IconButton/IconButton';
 import { ReactComponent as AddIcon } from '../../icons/bin.svg';
